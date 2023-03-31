@@ -1,8 +1,7 @@
-package com.desarrollo.demo.controllers;
+package com.desarrollo.demospring.controllers;
 
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Homepage controller.
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 public class IndexController {
 
-    @GetMapping("/")
+    @GetMapping("/index")
     String index() {
         return "index";
     }

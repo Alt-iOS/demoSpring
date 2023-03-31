@@ -1,6 +1,6 @@
-package com.desarrollo.demo.services;
+package com.desarrollo.demospring.services;
 
-import com.desarrollo.demo.entities.Product;
+import com.desarrollo.demospring.entities.Product;
 
 public interface ProductService {
 

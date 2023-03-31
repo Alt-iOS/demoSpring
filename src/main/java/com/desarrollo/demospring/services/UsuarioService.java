@@ -1,2 +1,5 @@
-package com.desarrollo.demospring.services;public interface IUsuarioService {
+package com.desarrollo.demospring.services;
+
+public interface UsuarioService {
+    public boolean login(String user, String pass);
 }

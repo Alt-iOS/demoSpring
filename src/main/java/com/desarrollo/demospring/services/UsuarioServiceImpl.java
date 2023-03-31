@@ -1,17 +1,22 @@
 package com.desarrollo.demospring.services;
 
-import com.mayab.desarrollo.entities.Usuario;
-import com.mayab.desarrollo.persistence.UserDAO;
+import com.desarrollo.demospring.entities.Usuario;
+import com.desarrollo.demospring.repositories.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class UsuarioServicio {
+import java.util.List;
 
-    private UserDAO dao;
-    public UsuarioServicio(UserDAO d){
-        this.dao =d;
-    }
+@Service
+public class UsuarioServiceImpl implements UsuarioService {
+    @Autowired
+    private UsuarioRepository userRepository;
+
+
     public boolean login(String user, String pass){
         boolean result = false;
-        Usuario usuario =dao.findByName(user);
+        List<Usuario> listUsuario =userRepository.findAll();
+        Usuario usuario = listUsuario.get(0);
         if(usuario != null){
             if ( usuario.getPassword().equals(pass)){
                 result = true;
@@ -20,19 +25,7 @@ public class UsuarioServicio {
         return result;
     }
 
-    public boolean createUser(String username, String pass, String email){
-        Usuario usuario = new Usuario();
-        usuario.setPassword(pass);
-        usuario.setEmail(email);
-        usuario.setNombre(username);
-        if (dao.findByEmail(email)==null &&  dao.findByName(username)==null){
-            dao.createUser(usuario);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+
 
 
 
