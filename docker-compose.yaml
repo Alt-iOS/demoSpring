@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  mysql_db:
+    container_name: db
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=mysqlBatarse
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql_db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/mysqlBatarse
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=123456
+volumes:
+  db_data:
+networks:
+  default:
